@@ -39,27 +39,27 @@ def fetch_and_upload(start_date, end_date):
 
 
 def main():
-    # fetch_and_upload(
-    #     start_date=START_DATE, 
-    #     end_date=END_DATE
-    # )
+    fetch_and_upload(
+        start_date=START_DATE, 
+        end_date=END_DATE
+    )
 
     df_raw = core.load_and_normalize_json_files(PATH__JSON)
 
-    # core.generate_profiling_report(
-    #     df=df_raw,
-    #     output_folder=PATH__PROFILE,
-    #     filename="reporte_series_tv.html"
-    # )
+    core.generate_profiling_report(
+        df=df_raw,
+        output_folder=PATH__PROFILE,
+        filename="reporte_series_tv.html"
+    )
 
     df_cleaned = core.clean_dataframe(df=df_raw)
     df_cleaned.head(10).to_csv('df_cleaned.csv', index=False)
 
-    # core.save_to_parquet(
-    #     df=df_cleaned, 
-    #     folder=PATH__PARQUET, 
-    #     filename="series_tv_data.parquet"
-    # )
+    core.save_to_parquet(
+        df=df_cleaned, 
+        folder=PATH__PARQUET, 
+        filename="series_tv_data.parquet"
+    )
 
     core.create_database(
         db_path=PATH__DB_SQLITE,
